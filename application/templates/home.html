@@ -5,10 +5,9 @@
 
 
 {% for post in posts %}
-		{{post.title }}<br>
-		{{post.name.first }}<br>
-		{{post.name.last }}<br>
-		{{post.content }}<br><br>
+	{{post.title }}<br>
+	{{post.first_name }} {{post.last_name }}<br>
+	{{post.content }}<br><br>
 	
 {% endfor %}	
 

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body_content %}
+
+<form method='POST' action=''>
+{{ form.hidden_tag() }}
+{{ form.first_name.label }}
+{{ form.first_name }}
+{% if form.first_name.errors %}
+	{%for error in form.first_name.errors %}
+	{{ error }}
+	{% endfor %}
+{% endif %}
+<br>
+{{ form.last_name.label }}
+{{ form.last_name }}
+<br>
+{{ form.title.label }}
+{{ form.title }}
+<br>
+{{ form.content.label }}
+{{ form.content }}
+<br>
+{{ form.submit }}
+</form>
+
+
+
+
+
+{% endblock %}
