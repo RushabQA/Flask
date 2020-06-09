@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block body_content %}
+
+<p1> Welcome to my first web app! </p1><br>
+
+
+{% for post in posts %}
+		{{post.title }}<br>
+		{{post.name.first }}<br>
+		{{post.name.last }}<br>
+		{{post.content }}<br><br>
+	
+{% endfor %}	
+
+
+
+{% endblock %}
+
