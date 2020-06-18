@@ -16,24 +16,27 @@ def about():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-	if current_user.is_authenticated:
-		return redirect(url_for('home'))
-	form = RegistrationForm()
-	if form.validate_on_submit():
-		hash_pw = bcrypt.generate_password_hash(form.password.data)
-		user = Users(
-			first_name=form.first_name.data,
-			last_name=form.last_name.data,
-			email=form.email.data,
-			password=hash_pw
+        if current_user.is_authenticated:
+                return redirect(url_for('home'))
+        form = RegistrationForm()
+        app.logger.info("form instantiated")
+        if form.validate_on_submit():
+                app.logger.info("forms submiting")
+                hash_pw = bcrypt.generate_password_hash(form.password.data)
+                user = Users(
+                        first_name=form.first_name.data,
+                        last_name=form.last_name.data,
+                        email=form.email.data,
+                        password=hash_pw
 			)
+        
+                db.session.add(user)
+                db.session.commit()
 
-		db.session.add(user)
-		db.session.commit()
-
-		return redirect(url_for('post'))
-
-	return render_template('register.html', title='Register', form=form)
+                return redirect(url_for('post'))
+        else:
+            print(form.errors)
+        return render_template('register.html', title='Register', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])

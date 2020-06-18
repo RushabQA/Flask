@@ -33,12 +33,7 @@ class RegistrationForm(FlaskForm):
             Length(min=2, max=30)
         ]
     )
-    title = StringField('Title',
-        validators = [
-            DataRequired(),
-            Length(min=2, max=100)
-        ]
-    )
+
     email = StringField('Email',
         validators = [
             DataRequired(),
@@ -47,7 +42,7 @@ class RegistrationForm(FlaskForm):
     )
     password = PasswordField('Password',
         validators = [
-            DataRequired(),
+            DataRequired()
         ]
     )
     confirm_password = PasswordField('Confirm Password',
